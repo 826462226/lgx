@@ -1,19 +1,95 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Github Page</title>
-	</head>
-	<body>
-	<div id="app">
-		<h1>{{message}}</h1>
-	</div>
-	<script src="./js/vue.js"></script>
-	<script>
-		var app = new Vue({el:'#app',
-			data: {
-				message: 'Hello Vue!'
-			}})
-	</script>
-	</body>
+<head>
+    <meta charset="utf-8"/>
+    <title>心理异常排查</title>
+    <link rel="stylesheet" href="./js/element-ui/lib/theme-chalk/index.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        #app {
+            height: 92vh;
+            padding: 8vh 10% 0% 10%;
+        }
+
+        .el-tabs--top {
+            height: 100%;
+        }
+
+        .el-tabs__nav {
+            width: 100%;
+        }
+
+        .el-tabs__header {
+            height: 9vh;
+            margin-bottom: 4vh;
+
+        }
+
+        .el-tabs__item {
+            width: 25%;
+            text-align: center;
+            font-size: large;
+        }
+        .el-tabs__content {
+            height: 76vh;
+
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-tabs v-model="activeName" @tab-click="handleClick" type="card">
+        <el-tab-pane label="心理健康自测" name="first">
+            <el-tabs tab-position="left" style="height: 200px;">
+                <el-tab-pane :label="'自测表'+i" v-for="i in 5">自测表</el-tab-pane>
+            </el-tabs>
+        </el-tab-pane>
+        <el-tab-pane label="结果查询" name="second">
+            <el-tabs tab-position="left" style="height: 200px;">
+                <el-tab-pane :label="'结果'+i" v-for="i in 5">自测结果</el-tab-pane>
+            </el-tabs>
+        </el-tab-pane>
+
+        <el-tab-pane label="心理异常反馈" name="third">
+            <el-tabs tab-position="left" style="height: 200px;">
+                <el-tab-pane label="心理异常反馈表单">反馈表单</el-tab-pane>
+                <el-tab-pane label="反馈结果">反馈结果</el-tab-pane>
+            </el-tabs>
+        </el-tab-pane>
+
+        <el-tab-pane label="我的" name="fourth">
+            <el-tabs tab-position="left" style="height: 200px;">
+                <el-tab-pane :label="'我的'+i" v-for="i in 5">我的。。。</el-tab-pane>
+            </el-tabs>
+        </el-tab-pane>
+
+    </el-tabs>
+</div>
+<script src="./js/vue.js"></script>
+<script src="./js/element-ui/lib/index.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                activeName: 'second'
+            };
+        },
+        methods: {
+            handleClick(tab, event) {
+                console.log(tab, event);
+            }
+        }
+    })
+</script>
+</body>
 </html>
